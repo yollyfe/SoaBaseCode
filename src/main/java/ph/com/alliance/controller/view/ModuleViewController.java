@@ -28,7 +28,7 @@ public class ModuleViewController {
 
 	@Autowired
 	private MyFunctionService myFunctionService;
-	
+
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String viewProfile(User myUser, ModelMap map,
 			HttpServletRequest request) {
@@ -60,12 +60,11 @@ public class ModuleViewController {
 		User kenneth = new User();
 		kenneth.setFname("kenneth");
 		myUserList.add(kenneth);
-		
+
 		User louis = new User();
 		louis.setFname("louis");
 		myUserList.add(louis);
-		
-		
+
 		if (null != uid && uid.equals("HOHOHO")) {
 			map.put("myString", "HAHAHAHA");
 			map.put("myUser", myUser);
@@ -73,7 +72,7 @@ public class ModuleViewController {
 			map.put("myString", "HUHUHU");
 		}
 		map.put("myUserList", myUserList);
-		
+
 		return "users/profile";
 	}
 
@@ -106,38 +105,37 @@ public class ModuleViewController {
 				.println("@/modulename/userform MODULE VIEW CONTROLLER CALLED.");
 		return "userform";
 	}
-	
-	@RequestMapping(value="/teststring")
+
+	@RequestMapping(value = "/teststring")
 	public String getStringList(ModelMap map) {
-		map.put("myString","HELLO #1");
+		map.put("myString", "HELLO #1");
 		map.addAttribute("myString", "HELLO #2");
 		map.put("myList", myFunctionService.getList());
 		return "test/stringpage";
 	}
-	
-	
-	
-	@RequestMapping(value="/mylist")
+
+	@RequestMapping(value = "/mylist")
 	public String getMyList(ModelMap map) {
 		List<Mytable> myList = myFunctionService.getMyTables();
-		map.put("myTableList",myList);
+		map.put("myTableList", myList);
 		return "test/mylist";
 	}
-	
-	@RequestMapping(value="/mytable/insert")
+
+	@RequestMapping(value = "/mytable/insert")
 	public String insertMyTable(Mytable myTable, ModelMap map) {
 		myFunctionService.insertMyTable(myTable);
 		return this.getMyList(map);
 	}
-	@RequestMapping(value="/mytable/update")
+
+	@RequestMapping(value = "/mytable/update")
 	public String updateMyTable(Mytable myTable, ModelMap map) {
 		myFunctionService.updateMyTable(myTable);
 		return this.getMyList(map);
 	}
-	@RequestMapping(value="/mytable/delete")
-	public String deleteMyTable(Mytable myTable, ModelMap map){
+
+	@RequestMapping(value = "/mytable/delete")
+	public String deleteMyTable(Mytable myTable, ModelMap map) {
 		myFunctionService.deleteMyTable(myTable);
 		return this.getMyList(map);
 	}
-	}
-
+}
